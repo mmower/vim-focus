@@ -1,0 +1,2 @@
+{:+ {:app [(:lt.objs.plugins/load-js "vim-focus_compiled.js" true)
+           :lt.plugins.vim-focus/lt-focus-lost]}}
