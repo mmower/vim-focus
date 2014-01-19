@@ -52,11 +52,3 @@
           :triggers #{:blur}
           :reaction (fn [this]
                       (switch-vim-editors-to-normal-mode)))
-
-(object/object* ::vim-focus.hello
-                :tags [:vim-focus.hello]
-                :name "vim-focus"
-                :init (fn [this]
-                        nil))
-
-(def vim-focus (object/create ::vim-focus.hello))
