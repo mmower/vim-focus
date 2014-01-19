@@ -8,7 +8,7 @@
   (:require-macros [lt.macros :refer [defui behavior]]))
 
 (defn editor->textarea
-  "Given LT editor object e, return its corresponding CodeMirror
+  "Given LT editor object 'e', return its corresponding CodeMirror
   HTMLTextArea DOM element"
   [e]
   (let [elem (editor/->elem e)
@@ -17,12 +17,12 @@
     text))
 
 (defn vim-insert-editor?
-  "Given LT editor object e, return true if it is a vim editor in insert mode"
+  "Given LT editor object 'e', return true if it's a Vim editor in insert-mode"
   [e]
   (= "vim-insert" (editor/option e :keyMap)))
 
 (defn send-escape-key
-  "Given a CodeMirror HTMLTextArea DOM element elem send it an event
+  "Given CodeMirror HTMLTextArea DOM element 'elem' send it a DOM event
   corresponding to the user pressing escape"
   [elem]
   (let [evt (js/document.createEvent "Events")]
@@ -32,18 +32,18 @@
     (.dispatchEvent elem evt)))
 
 (defn target-editors
-  "Return a sequence of LT editor objects that are in vim insert mode"
+  "Return a sequence of LT editor objects that are in Vim insert-mode"
   []
   (filter vim-insert-editor? (pool/get-all)))
 
 (defn escape-to-normal-mode
-  "Given an LT editor object e, send it an emulated escape keypress to return
+  "Given LT editor object 'e', send it an emulated escape keypress to return
   it to vim normal mode"
   [e]
   (send-escape-key (editor->textarea e)))
 
 (defn switch-vim-editors-to-normal-mode
-  "Switch any LT editors in vim insert mode to normal mode"
+  "Switch any LT editors in Vim insert-mode to normal-mode"
   []
   (doseq [e (target-editors)]
     (escape-to-normal-mode e)))
