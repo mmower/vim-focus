@@ -26,7 +26,7 @@
   corresponding to the user pressing escape"
   [elem]
   (let [evt (js/document.createEvent "Events")]
-    (.initEvent evt "keydown" rue true)
+    (.initEvent evt "keydown" true true)
     (set! (.-keyCode evt) 27)
     (set! (.-which evt) 27)
     (.dispatchEvent elem evt)))
